@@ -1,0 +1,29 @@
+extends ../layouts/common.pug
+
+block content 
+    H1 THÊM SÁCH
+    form(action="/books/add" method="POST" class="form-group")
+        label    Tên sách
+        input(type="text" name="name" class="form-control")
+        label    Mô tả
+        input(type="text" name="description" class="form-control mb-3")
+        button(class="btn btn-primary") Thêm
+    h1  GIÁ SÁCH CỦA BẠN
+
+    table(class="table")
+        tr
+            th Tên Sách
+            th Thể Loại
+            th Sửa
+            th Xóa
+        each obj in books
+            tr
+                td=obj.name
+                    span &nbsp
+                td=obj.description 
+                    span &nbsp
+                td
+                    a(href="books/edit/" + obj.id) Sửa 
+                    span &nbsp               
+                td
+                    a(href="books/delete/" + obj.id) Xóa 

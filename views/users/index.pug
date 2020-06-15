@@ -1,0 +1,31 @@
+extends ../layouts/common.pug
+
+block content 
+    H1 ADD USER
+    if error
+        each err in error
+            .alert.alert-danger=err
+    form(action="/users/add" method="POST")
+        lable    NAME
+        input(type="text" name="name" class="form-control mb-3" value=values ? values.name : "")
+        lable   SDT
+        input(type="text" name="phone" class="form-control mb-3" value=values ? values.phone : "")
+        span &nbsp
+        button(class="btn btn-primary") Add
+    h1  Thông Tin User
+
+    table(class="table")
+        tr
+            th Name
+            th SDT
+        each obj in users
+            tr
+                td=obj.name
+                    span &nbsp
+                td=obj.phone
+                    span &nbsp
+                td
+                    a(href="users/edit/" + obj.id) Sửa 
+                    span &nbsp               
+                td
+                    a(href="users/delete/" + obj.id) Xóa 
